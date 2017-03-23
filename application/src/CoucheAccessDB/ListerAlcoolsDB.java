@@ -1,6 +1,8 @@
 package CoucheAccessDB;
 
-import java.sql.*; 
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import ClassesMetier.Alcools;
@@ -24,7 +26,7 @@ public class ListerAlcoolsDB extends operationDB {
 		ResultSet rs;		 
         rs = stmt.executeQuery("SELECT * FROM Produits,Alcools where Produits.NumProduit = Alcools.fk_Produits");
 		//ResultSet sqlRes = SqlCmd.executeQuery();            
-			/*while (rs.next() == true)    
+			while (rs.next() == true)    
 				Liste.add(new Alcools(
 						rs.getInt("NumProduit"),
 						rs.getString("Nom"),
@@ -34,9 +36,10 @@ public class ListerAlcoolsDB extends operationDB {
 						rs.getInt("Degré"),
 						rs.getString("Gout"),
 						rs.getString("Provenance"),
-						rs.getString("Peremption")
+						LocalDate.parse(rs.getString("Peremption").substring(0, 10),             
+								DateTimeFormatter.ofPattern("dd-MM-yyyy")) 
 					)
-				);*/
+				);
 				rs.close();                
 		return Liste.size(); 
 	}
