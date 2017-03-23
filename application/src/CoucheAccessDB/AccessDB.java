@@ -55,8 +55,38 @@ public class AccessDB {
 		 ExecuterRequete(operation); 
 		 return operation.getListe(); 
 	 }
+	 public List<Chemises> ListerChemises() throws ExceptionAccessDB { 
+		 ListerChemisesDB operation = new ListerChemisesDB();  
+		 ExecuterRequete(operation); 
+		 return operation.getListe(); 
+	 }
+	 public List<Vins> ListerVins() throws ExceptionAccessDB { 
+		 ListerVinsDB operation = new ListerVinsDB();  
+		 ExecuterRequete(operation); 
+		 return operation.getListe(); 
+	 }
+	 public List<Client> ListerClients() throws ExceptionAccessDB { 
+		 ListerClientsDB operation = new ListerClientsDB();  
+		 ExecuterRequete(operation); 
+		 return operation.getListe(); 
+	 }
+	 public List<Commande> ListerCommandes(int IDclient) throws ExceptionAccessDB { 
+		 ListerCommandesDB operation = new ListerCommandesDB(IDclient);  
+		 ExecuterRequete(operation); 
+		 return operation.getListe(); 
+	 }
 	 public int AjouterChemise(Chemises chemise) throws ExceptionAccessDB { 
 		 AjouterChemisesDB operation = new AjouterChemisesDB(chemise);  
+		 return ExecuterRequete(operation); 
+
+	 }
+	 public int AjouterAlcool(Alcools Alcool) throws ExceptionAccessDB { 
+		 AjouterAlcoolsDB operation = new AjouterAlcoolsDB(Alcool);  
+		 return ExecuterRequete(operation); 
+
+	 }
+	 public int AjouterVin(Vins vin) throws ExceptionAccessDB { 
+		 AjouterVinsDB operation = new AjouterVinsDB(vin);  
 		 return ExecuterRequete(operation); 
 
 	 }

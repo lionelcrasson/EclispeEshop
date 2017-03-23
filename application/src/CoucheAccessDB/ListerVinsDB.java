@@ -1,6 +1,8 @@
 package CoucheAccessDB;
 
-import java.sql.*; 
+import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import ClassesMetier.Vins;
@@ -35,7 +37,8 @@ public class ListerVinsDB extends operationDB {
 						rs.getString("Saveur"),
 						rs.getString("Provenance"),
 						rs.getInt("Maturation"),
-						rs.getDate("Fabrication")
+						LocalDate.parse(rs.getString("Fabrication").substring(0, 10),             
+								DateTimeFormatter.ofPattern("dd-MM-yyyy")) 
 					)
 				);
 				rs.close();                

@@ -1,4 +1,6 @@
 package ClassesMetier;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class Vins extends Produit{
@@ -6,7 +8,7 @@ public class Vins extends Produit{
 	private String Saveur;
 	private String Provenance;
 	private int Maturation;
-	private Date Fabrication;
+	private LocalDate Fabrication;
 	
 	public Vins(){};
 	public Vins(Vins vin){
@@ -26,7 +28,7 @@ public class Vins extends Produit{
 				String Saveur,
 				String Provenance,
 				int Maturation,
-				Date Fabrication){
+				LocalDate Fabrication){
 		super(NumProduit, Nom, Image,Prix,Stock);
 		this.Couleur = Couleur;
 		this.Saveur = Saveur;
@@ -36,14 +38,20 @@ public class Vins extends Produit{
 	}
 
 
-public Date getFabrication() {
+public LocalDate getFabrication() {
 	return Fabrication;
 }
-
-public void setFabrication(Date fabrication) {
-	Fabrication = fabrication;
+public String getFabricationTxt(){ 
+	return Fabrication.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")); 
 }
-
+public void setFabrication(String s) throws ExceptionFormat {
+	try {
+		Fabrication = LocalDate.parse(s, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+	}
+	catch (Exception e) {
+		throw new ExceptionFormat("la date de péremption n'a pas un format correct");
+	}
+ }
 public int getMaturation() {
 	return Maturation;
 }
